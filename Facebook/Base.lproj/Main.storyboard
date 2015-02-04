@@ -22,24 +22,42 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Fd3-xW-5Gy"/>
                                 </constraints>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Login">
                                     <color key="titleShadowColor" red="0.91764705879999997" green="0.40784313729999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9Zw-HP-97D"/>
+                                    <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CaX-AR-pSD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDI-An-5g6">
+                                <rect key="frame" x="71" y="456" width="482" height="80"/>
+                                <color key="backgroundColor" red="0.91764705879999997" green="0.40784313729999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Dvj-h8-2PY"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="fXZ-kT-cAC"/>
+                                </constraints>
+                                <state key="normal" title="share">
+                                    <color key="titleShadowColor" red="0.91764705879999997" green="0.40784313729999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="share:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Qwr-FX-HKx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wDI-An-5g6" secondAttribute="bottom" constant="64" id="8MF-D2-jdU"/>
                             <constraint firstItem="ZA4-De-a9W" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="71" id="9YV-nF-FVg"/>
                             <constraint firstAttribute="trailing" secondItem="ZA4-De-a9W" secondAttribute="trailing" constant="47" id="CBj-Rx-XXa"/>
                             <constraint firstItem="ZA4-De-a9W" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="116" id="HQx-50-Cj4"/>
+                            <constraint firstAttribute="trailing" secondItem="wDI-An-5g6" secondAttribute="trailing" constant="47" id="QtL-HC-pqY"/>
+                            <constraint firstItem="wDI-An-5g6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="71" id="sVO-YV-l10"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="382" y="434"/>
         </scene>
     </scenes>
 </document>
