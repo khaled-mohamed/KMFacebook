@@ -14,6 +14,8 @@
 		E18AA7B41A81F2E700E71318 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E18AA7B31A81F2E700E71318 /* Images.xcassets */; };
 		E18AA7B71A81F2E700E71318 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E18AA7B51A81F2E700E71318 /* LaunchScreen.xib */; };
 		E18AA7C31A81F2E700E71318 /* FacebookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA7C21A81F2E700E71318 /* FacebookTests.m */; };
+		E18AA7CD1A81F40100E71318 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18AA7CC1A81F40100E71318 /* FacebookSDK.framework */; };
+		E18AA7D01A82076100E71318 /* KMFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AA7CF1A82076100E71318 /* KMFacebook.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		E18AA7BC1A81F2E700E71318 /* FacebookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E18AA7C11A81F2E700E71318 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E18AA7C21A81F2E700E71318 /* FacebookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FacebookTests.m; sourceTree = "<group>"; };
+		E18AA7CC1A81F40100E71318 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		E18AA7CE1A82076100E71318 /* KMFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMFacebook.h; sourceTree = "<group>"; };
+		E18AA7CF1A82076100E71318 /* KMFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMFacebook.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E18AA7CD1A81F40100E71318 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +89,8 @@
 			children = (
 				E18AA7AA1A81F2E700E71318 /* AppDelegate.h */,
 				E18AA7AB1A81F2E700E71318 /* AppDelegate.m */,
+				E18AA7CE1A82076100E71318 /* KMFacebook.h */,
+				E18AA7CF1A82076100E71318 /* KMFacebook.m */,
 				E18AA7AD1A81F2E700E71318 /* ViewController.h */,
 				E18AA7AE1A81F2E700E71318 /* ViewController.m */,
 				E18AA7B01A81F2E700E71318 /* Main.storyboard */,
@@ -98,6 +106,7 @@
 			children = (
 				E18AA7A71A81F2E700E71318 /* Info.plist */,
 				E18AA7A81A81F2E700E71318 /* main.m */,
+				E18AA7CC1A81F40100E71318 /* FacebookSDK.framework */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -220,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E18AA7AF1A81F2E700E71318 /* ViewController.m in Sources */,
+				E18AA7D01A82076100E71318 /* KMFacebook.m in Sources */,
 				E18AA7AC1A81F2E700E71318 /* AppDelegate.m in Sources */,
 				E18AA7A91A81F2E700E71318 /* main.m in Sources */,
 			);
@@ -343,6 +353,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Facebook",
+				);
 				INFOPLIST_FILE = Facebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -353,6 +367,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Facebook",
+				);
 				INFOPLIST_FILE = Facebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

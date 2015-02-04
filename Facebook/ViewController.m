@@ -7,8 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "KMFacebook.h"
+#import "AppDelegate.h"
 
-@interface ViewController ()
+@interface ViewController ()<KMFacebookDelegate>
 
 @end
 
@@ -18,6 +20,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+-(IBAction)login:(id)sender
+{
+    KMFacebook *facebook=[[KMFacebook alloc] init];
+    [facebook setDelegate:self];
+    [facebook getFacebookData:@[@"public_profile", @"user_birthday",@"email"]];
+}
+
+-(void)didGetUserData:(BOOL)success andResult:(id)result andError:(NSError *)error
+{
+    if (success) {
+        
+        NSLog(@"%@",result);
+    }
+    else
+    {
+        NSLog(@"%@",error.description);
+
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
