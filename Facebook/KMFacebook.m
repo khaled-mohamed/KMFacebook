@@ -34,7 +34,133 @@
 
 }
 
+-(void)shareUsingDailogeWithName:(NSString*)name andCaption:(NSString*)caption andDescription:(NSString*)description andPictureURL:(NSString*)pictureURL andshareLink:(NSString*)shareLink
+{
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    
+    NSMutableDictionary *paramsDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   name, @"name",
+                                   caption, @"caption",
+                                   description, @"description",
+                                   shareLink, @"link",
+                                   pictureURL, @"picture",
+                                   nil];
+    params.link = [NSURL URLWithString:@"https://developers.facebook.com/docs/ios/share/"];
+        // Present share dialog
+    [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                               parameters:paramsDict
+                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                      if (error) {
+                                                          // An error occurred, we need to handle the error
+                                                          // See: https://developers.facebook.com/docs/ios/errors
+                                                          NSLog(@"Error publishing story: %@", error.description);
+                                                      } else {
+                                                          if (result == FBWebDialogResultDialogNotCompleted) {
+                                                              // User cancelled.
+                                                              NSLog(@"User cancelled.");
+                                                          } else {
+                                                              // Handle the publish feed callback
+                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                              
+                                                              if (![urlParams valueForKey:@"post_id"]) {
+                                                                  // User cancelled.
+                                                                  NSLog(@"User cancelled.");
+                                                                  
+                                                              } else {
+                                                                  // User clicked the Share button
+                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                                  NSLog(@"result %@", result);
+                                                              }
+                                                          }
+                                                      }
+                                                  }];
+    
+}
 
+
+-(void)shareUsingAPIWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink
+{
+    if (FBSession.activeSession.state != FBSessionStateOpen) {
+        
+        // If there's one, just open the session silently, without showing the user the login UI
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_birthday",@"email"]
+                                           allowLoginUI:NO
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          // Handler for session state changes
+                                          // This method will be called EACH time the session state changes,
+                                          // also for intermediate states and NOT just when the session open
+                                          [KMFacebook sessionStateChanged:session state:state error:error];
+                                          
+                                          
+                                          NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                                         name, @"name",
+                                                                         caption, @"caption",
+                                                                         description, @"description",
+                                                                         shareLink, @"link",
+                                                                         pictureURL, @"picture",
+                                                                         nil];
+                                          
+                                          // Make the request
+                                          [FBRequestConnection startWithGraphPath:@"/me/feed"
+                                                                       parameters:params
+                                                                       HTTPMethod:@"POST"
+                                                                completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                                                    if (!error) {
+                                                                        // Link posted successfully to Facebook
+                                                                        NSLog(@"result: %@", result);
+                                                                    } else {
+                                                                        // An error occurred, we need to handle the error
+                                                                        // See: https://developers.facebook.com/docs/ios/errors
+                                                                        NSLog(@"%@", error.description);
+                                                                    }
+                                                                }];
+
+                                      }];
+    }
+    else
+    {
+        // is Not LoggedIn
+        
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       name, @"name",
+                                       caption, @"caption",
+                                       description, @"description",
+                                       shareLink, @"link",
+                                       pictureURL, @"picture",
+                                       nil];
+        
+        // Make the request
+        [FBRequestConnection startWithGraphPath:@"/me/feed"
+                                     parameters:params
+                                     HTTPMethod:@"POST"
+                              completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                  if (!error) {
+                                      // Link posted successfully to Facebook
+                                      NSLog(@"result: %@", result);
+                                  } else {
+                                      // An error occurred, we need to handle the error
+                                      // See: https://developers.facebook.com/docs/ios/errors
+                                      NSLog(@"%@", error.description);
+                                  }
+                              }];
+
+        
+        
+    }
+}
+
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
+}
 + (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
     // If the session was opened successfully

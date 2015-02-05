@@ -16,4 +16,6 @@
 @property (nonatomic,strong) id <KMFacebookDelegate> delegate;
 - (void)getFacebookData:(NSArray*)permissions;
 +(void)startFacebookWithPermissions:(NSArray*)permissions;
+-(void)shareUsingDailogeWithName:(NSString*)name andCaption:(NSString*)caption andDescription:(NSString*)description andPictureURL:(NSString*)pictureURL andshareLink:(NSString*)shareLink;
+-(void)shareUsingAPIWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink;
 @end
