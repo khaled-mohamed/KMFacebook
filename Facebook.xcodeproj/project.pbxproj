@@ -359,7 +359,7 @@
 				);
 				INFOPLIST_FILE = Facebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Facebook;
 			};
 			name = Debug;
 		};
@@ -373,7 +373,7 @@
 				);
 				INFOPLIST_FILE = Facebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Facebook;
 			};
 			name = Release;
 		};
@@ -391,7 +391,7 @@
 				);
 				INFOPLIST_FILE = FacebookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FacebookTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Facebook.app/Facebook";
 			};
 			name = Debug;
@@ -406,7 +406,7 @@
 				);
 				INFOPLIST_FILE = FacebookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FacebookTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Facebook.app/Facebook";
 			};
 			name = Release;
@@ -430,6 +430,7 @@
 				E18AA7C81A81F2E700E71318 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E18AA7C91A81F2E700E71318 /* Build configuration list for PBXNativeTarget "FacebookTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +439,7 @@
 				E18AA7CB1A81F2E700E71318 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

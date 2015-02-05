@@ -25,7 +25,7 @@
 {
     KMFacebook *facebook=[[KMFacebook alloc] init];
     [facebook setDelegate:self];
-    [facebook getFacebookData:@[@"public_profile", @"user_birthday",@"email"]];
+    [facebook getFacebookData];
 }
 
 -(void)didGetUserData:(BOOL)success andResult:(id)result andError:(NSError *)error
@@ -46,7 +46,7 @@
 {
     KMFacebook *facebook=[[KMFacebook alloc] init];
     [facebook setDelegate:self];
-    [facebook shareUsingAPIWithName:@"Khaled" andCaption:@"khaled" andDescription:@"khaled" andPictureURL:@"http://i.imgur.com/g3Qc1HN.png" andshareLink:@"https://developers.facebook.com/docs/ios/share/"];
+    [facebook shareUsingNativeDialogueWithName:@"Khaled" andCaption:@"khaled" andDescription:@"khaled" andPictureURL:@"http://i.imgur.com/g3Qc1HN.png" andshareLink:@"https://developers.facebook.com/docs/ios/share/"];
 
 }
 

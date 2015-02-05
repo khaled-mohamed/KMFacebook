@@ -7,6 +7,7 @@
 //
 
 #import "KMFacebook.h"
+#import <FacebookSDK/FBDialogs.h>
 
 @implementation KMFacebook
 
@@ -15,6 +16,7 @@
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         
         // If there's one, just open the session silently, without showing the user the login UI
+        [[NSUserDefaults standardUserDefaults] setObject:permissions forKey:@"FACEBOOK_PERMISSIONS_KMFACEBOOK"];
         [FBSession openActiveSessionWithReadPermissions:permissions
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
@@ -81,9 +83,8 @@
 -(void)shareUsingAPIWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink
 {
     if (FBSession.activeSession.state != FBSessionStateOpen) {
-        
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"user_birthday",@"email"]
+        [FBSession openActiveSessionWithReadPermissions:[[NSUserDefaults standardUserDefaults] objectForKey:@"FACEBOOK_PERMISSIONS_KMFACEBOOK"]
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
@@ -150,6 +151,56 @@
     }
 }
 
+-(void)sendingMessageUsingDialogueWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink
+{
+    // Show the feed dialog
+    if ([FBDialogs canPresentMessageDialog])
+    {
+        [FBDialogs presentMessageDialogWithLink:[NSURL URLWithString:shareLink] name:name caption:caption description:description picture:[NSURL URLWithString:pictureURL] clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+            
+            if (!error) {
+                // Link posted successfully to Facebook
+                NSLog(@"result: %@", results);
+            } else {
+                // An error occurred, we need to handle the error
+                // See: https://developers.facebook.com/docs/ios/errors
+                NSLog(@"%@", error.description);
+            }
+            
+        }];
+    }
+    else
+    {
+        
+        NSLog(@"No Messenger Installed");
+
+    }
+    
+
+}
+-(void)shareUsingNativeDialogueWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink
+{
+    if ([FBDialogs canPresentShareDialog])
+    {
+        [FBDialogs presentShareDialogWithLink:[NSURL URLWithString:shareLink] name:name caption:caption description:description picture:[NSURL URLWithString:pictureURL] clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+            if (!error) {
+                // Link posted successfully to Facebook
+                NSLog(@"result: %@", results);
+            } else {
+                // An error occurred, we need to handle the error
+                // See: https://developers.facebook.com/docs/ios/errors
+                NSLog(@"%@", error.description);
+            }
+    }];
+    }
+    else
+    {
+        
+        NSLog(@"No Native Facebook App");
+        
+    }
+
+}
 - (NSDictionary*)parseURLParams:(NSString *)query {
     NSArray *pairs = [query componentsSeparatedByString:@"&"];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -210,7 +261,7 @@
 }
 
 
-- (void)getFacebookData:(NSArray*)permissions
+- (void)getFacebookData
 {
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
@@ -226,7 +277,7 @@
     } else {
         // Open a session showing the user the login UI
         // You must ALWAYS ask for public_profile permissions when opening a session
-        [FBSession openActiveSessionWithReadPermissions:permissions
+        [FBSession openActiveSessionWithReadPermissions:[[NSUserDefaults standardUserDefaults] objectForKey:@"FACEBOOK_PERMISSIONS_KMFACEBOOK"]
                                            allowLoginUI:YES
                                       completionHandler:
          ^(FBSession *session, FBSessionState state, NSError *error) {
@@ -235,7 +286,7 @@
              // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
              [KMFacebook sessionStateChanged:session state:state error:error];
              
-             [self requestUserInfo:permissions];
+             [self requestUserInfo:[[NSUserDefaults standardUserDefaults] objectForKey:@"FACEBOOK_PERMISSIONS_KMFACEBOOK"]];
          }];
     }
 }

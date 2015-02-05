@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E18AA7A21A81F2E700E71318"
-               BuildableName = "Facebook.app"
+               BuildableName = "VoteMe.app"
                BlueprintName = "Facebook"
                ReferencedContainer = "container:Facebook.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E18AA7BB1A81F2E700E71318"
-               BuildableName = "FacebookTests.xctest"
+               BuildableName = "VoteMeTests.xctest"
                BlueprintName = "FacebookTests"
                ReferencedContainer = "container:Facebook.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E18AA7BB1A81F2E700E71318"
-               BuildableName = "FacebookTests.xctest"
+               BuildableName = "VoteMeTests.xctest"
                BlueprintName = "FacebookTests"
                ReferencedContainer = "container:Facebook.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E18AA7A21A81F2E700E71318"
-            BuildableName = "Facebook.app"
+            BuildableName = "VoteMe.app"
             BlueprintName = "Facebook"
             ReferencedContainer = "container:Facebook.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E18AA7A21A81F2E700E71318"
-            BuildableName = "Facebook.app"
+            BuildableName = "VoteMe.app"
             BlueprintName = "Facebook"
             ReferencedContainer = "container:Facebook.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E18AA7A21A81F2E700E71318"
-            BuildableName = "Facebook.app"
+            BuildableName = "VoteMe.app"
             BlueprintName = "Facebook"
             ReferencedContainer = "container:Facebook.xcodeproj">
          </BuildableReference>
