@@ -22,5 +22,6 @@
 -(void)shareUsingAPIWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink;
 -(void)sendingMessageUsingDialogueWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink;
 -(void)shareUsingNativeDialogueWithName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andPictureURL:(NSString *)pictureURL andshareLink:(NSString *)shareLink;
+-(void)addLikeButtonWithURl:(NSString*)url andPosition:(CGPoint)likePosition toView:(UIView*)superView;
 
 @end

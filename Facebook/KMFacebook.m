@@ -352,6 +352,15 @@
     
 }
 
+-(void)addLikeButtonWithURl:(NSString*)url andPosition:(CGPoint)likePosition toView:(UIView*)superView
+{
+    FBLikeControl *like = [[FBLikeControl alloc] init];
+    like.objectID =url;
+    [superView addSubview:like];
+    [like setCenter:likePosition];
+    
+}
+
 - (void) makeRequestForUserData
 {
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -366,7 +375,6 @@
         }
     }];
 }
-
 
 
 @end

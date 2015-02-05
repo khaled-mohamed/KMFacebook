@@ -18,6 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //https://www.facebook.com/BrightunitCo?pnref=lhc
+    KMFacebook *facebook=[[KMFacebook alloc] init];
+    [facebook addLikeButtonWithURl:@"https://www.facebook.com/BrightunitCo?pnref=lhc" andPosition:CGPointMake(100, 100) toView:self.view];
+
+   
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -26,6 +31,7 @@
     KMFacebook *facebook=[[KMFacebook alloc] init];
     [facebook setDelegate:self];
     [facebook getFacebookData];
+  [facebook addLikeButtonWithURl:@"https://www.facebook.com/BrightunitCo?pnref=lhc" andPosition:CGPointMake(100, 100) toView:self.view];
 }
 
 -(void)didGetUserData:(BOOL)success andResult:(id)result andError:(NSError *)error
